@@ -2,6 +2,7 @@
 
 # A three-in-one game app
 
+# The game definitions
 guess() {
     local -i mynumber=$(( 1 + RANDOM % 10 ))
     read -rp "I'm thinking of a number between 1 and 10. What do you think it is? " theguess
@@ -19,26 +20,3 @@ flip() {
     if (( mynumber == 0 )); then
         local face="HEADS"
     else
-        local face="TAILS"
-    fi
-    echo "The coin landed on: $face"; echo
-    sleep 1
-    choosegame
-}
-
-choosegame() {
-    echo "Select a game:"
-    echo "1) Guessing Game"
-    echo "2) Coin Flip"
-    echo "3) Exit"
-    read -rp "Enter choice [1-3]: " choice
-    case $choice in
-        1) guess ;;
-        2) flip ;;
-        3) exit 0 ;;
-        *) echo "Invalid option"; choosegame ;;
-    esac
-}
-
-# Start the game loop
-choosegame
